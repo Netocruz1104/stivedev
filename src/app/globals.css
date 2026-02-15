@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
+/* Premium dark theme - Apple / Tesla / Stripe inspired */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --muted-foreground: #71717a;
+  --border: #27272a;
+  --card: #0c0c0c;
+  --card-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #050505;
+  --accent: #18181b;
+  --accent-foreground: #fafafa;
+  --ring: #3f3f46;
+  --radius: 0.75rem;
+  --glow: rgba(250, 250, 250, 0.03);
+  --gradient-start: #0a0a0a;
+  --gradient-end: #050505;
 }
 
 @theme inline {
@@ -10,17 +25,51 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle selection */
+::selection {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+}
+
+/* Gradiente animado para títulos (uso em Hero) */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(
+    90deg,
+    #fafafa 0%,
+    #a1a1aa 25%,
+    #fafafa 50%,
+    #71717a 75%,
+    #fafafa 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
 }
