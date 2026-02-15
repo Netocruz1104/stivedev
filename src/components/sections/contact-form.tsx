@@ -35,14 +35,20 @@ export function ContactForm() {
     setErrors({});
     setStatus("sending");
 
+    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+    const endpoint = formspreeId
+      ? `https://formspree.io/f/${formspreeId}`
+      : "/api/contact";
+
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
           message: data.get("message"),
+          _replyto: data.get("email"),
         }),
       });
       const json = await res.json().catch(() => ({}));

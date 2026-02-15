@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StiveDev — Portfólio
 
-## Getting Started
+Site de portfólio em Next.js (App Router), TypeScript, Tailwind CSS e Framer Motion.
 
-First, run the development server:
+## Desenvolvimento
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy no GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O projeto está configurado para **export estático** e deploy via **GitHub Actions**.
 
-## Learn More
+### 1. Ativar o GitHub Pages
 
-To learn more about Next.js, take a look at the following resources:
+1. No repositório: **Settings** → **Pages**
+2. Em **Source**, escolha **GitHub Actions**
+3. Salve
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Formulário de contato (Formspree)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para o formulário da página **Contato** enviar e-mails no site publicado:
 
-## Deploy on Vercel
+1. Crie uma conta em [formspree.io](https://formspree.io)
+2. Crie um novo formulário e defina o e-mail de destino (ex.: aristoteles.775@gmail.com)
+3. Copie o **Form ID** (aparece na URL: `https://formspree.io/f/XXXXXXXX`)
+4. No repositório: **Settings** → **Secrets and variables** → **Actions**
+5. Crie um secret: nome `FORMSPREE_ID`, valor = o Form ID (só a parte `XXXXXXXX`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A cada **push na branch `master`**, o workflow faz o build e publica em:
+
+**https://netocruz1104.github.io/stivedev/**
+
+(Substitua `netocruz1104` pelo seu usuário do GitHub se for diferente.)
+
+---
+
+## Build manual
+
+```bash
+npm run build
+```
+
+Para GitHub Pages (com basePath):
+
+```bash
+GITHUB_PAGES=true npm run build
+```
+
+Os arquivos estáticos ficam na pasta `out/`.
+
+## Estrutura
+
+- `src/app/` — Páginas (Home, Sobre, Projetos, Contato)
+- `src/components/` — UI, seções, animações
+- `src/lib/` — Utilitários
+
+## Licença
+
+Privado / uso pessoal.
